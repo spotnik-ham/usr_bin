@@ -1,0 +1,110 @@
+#!/bin/bash
+# MENU DE SELECTION POUR Spotnik-1.9
+#
+#  F5NLG  05/12/2018
+#
+
+while : ; do
+
+choix=$(whiptail --title "Spotnik Menu 1.9"  --menu "                    >> Make your Choice: " 33 69 26 \
+1 " Restart Spotnik on RRF '96'" \
+2 " Restart Spotnik on FON '97'" \
+3 " Restart Spotnik on TEC Room '98'" \
+4 " Restart Spotnik on INT Room '99'" \
+5 " Restart Spotnik on STV Room '100'" \
+6 " Restart Spotnik on CD2 Room '101'" \
+7 " Restart Spotnik on EchoLink '102'" \
+8 " Restart Spotnik on Stand Alone '95'" \
+9 " See Spotnik working (Logs) 'ctrl c'to leave" \
+10 " Configure Wifi or network" \
+11 " Trim Sound Alsamixer" \
+12 " Edit Svxlink.cfg for all reflectors" \
+13 " Edit Svxlink.echo for EchoLink." \
+14 " Edit ModuleEchoLink.conf" \
+15 " Edit Airport for meteo" \
+16 " MC Midnight Commander" \
+17 " Configurer les mails pour le Moniteur de propag" \
+18 " Recherche du proxy Echolink !!c'est long!!" \
+19 " Configurer la radio SA818 Spotnik Delta " \
+20 " Reboot général"  3>&1 1>&2 2>&3)
+
+exitstatus=$?
+
+#on recupere ce choix
+#exitstatus=$?
+if [ $exitstatus = 0 ]; then
+    echo "Your chosen option:" $choix
+else
+    echo "You chose Cancel."; break;
+fi
+
+
+
+# case : action en fonction du choix
+
+case $choix in
+
+1)
+/etc/spotnik/restart.rrf ;;
+
+2)
+/etc/spotnik/restart.fon ;;
+
+3)
+/etc/spotnik/restart.tec ;;
+
+4)
+/etc/spotnik/restart.urg ;;
+
+5)
+/etc/spotnik/restart.stv ;;
+
+6)
+/etc/spotnik/restart.cd2 ;;
+
+7)
+/etc/spotnik/restart.el ;;
+
+8)
+/etc/spotnik/restart.default ;;
+
+9)
+/etc/spotnik/view_svx ;;
+
+10)
+nmtui ;;
+
+11)
+alsamixer && alsactl store ;;
+
+12)
+mcedit /etc/spotnik/svxlink.cfg ;;
+
+13)
+mcedit /etc/spotnik/svxlink.echo ;;
+
+14)
+mcedit /etc/spotnik/svxlink.d/ModuleEchoLink.conf ;;
+
+15)
+mcedit /etc/spotnik/svxlink.d/ModuleMetarInfo.conf ;;
+
+16)
+mc /etc/spotnik ;;
+
+17)
+fetchsetup ;;
+
+18)
+/etc/spotnik/Get_EcholinkProxy.sh ;;
+
+19)
+818-prog ;;
+
+20)
+reboot
+
+esac
+
+done
+exit 0
