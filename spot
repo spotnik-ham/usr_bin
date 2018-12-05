@@ -23,10 +23,10 @@ choix=$(whiptail --title "Spotnik Menu 1.9"  --menu "                    >> Make
 14 " Edit ModuleEchoLink.conf" \
 15 " Edit Airport for meteo" \
 16 " MC Midnight Commander" \
-17 " Configurer les mails pour le Moniteur de propag" \
-18 " Recherche du proxy Echolink !!c'est long!!" \
-19 " Configurer la radio SA818 Spotnik Delta " \
-20 " Reboot général"  3>&1 1>&2 2>&3)
+17 " Configure mail account for Propagation Monitor" \
+18 " Search Echolink Proxy it takes time !!" \
+19 " Configure SA818 Radio Spotnik Delta only " \
+20 " Reboot"  3>&1 1>&2 2>&3)
 
 exitstatus=$?
 
