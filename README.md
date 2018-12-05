@@ -12,7 +12,9 @@ for user documentation please refer to the [spotnik documentation]
 ssh spotnik
 cd /usr
 git clone https://github.com/spotnik-ham/usr_bin.git bin
+
 cd bin
+
 chmod +x spot
 
 ### Update
