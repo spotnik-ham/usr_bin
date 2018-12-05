@@ -26,7 +26,9 @@ choix=$(whiptail --title "Spotnik Menu 1.9"  --menu "                    >> Make
 17 " Configure mail account for Propagation Monitor" \
 18 " Search Echolink Proxy it takes time !!" \
 19 " Configure SA818 Radio Spotnik Delta only " \
-20 " Reboot"  3>&1 1>&2 2>&3)
+20 " Edit HAMNET acount " \
+21 " Edit HAMNET login & password " \
+22 " Reboot"  3>&1 1>&2 2>&3)
 
 exitstatus=$?
 
@@ -102,6 +104,12 @@ fetchsetup ;;
 818-prog ;;
 
 20)
+mcedit /etc/ppp/peers/hamnet ;;
+
+21)
+mcedit /etc/ppp/chap-secrets ;;
+
+22)
 reboot
 
 esac
