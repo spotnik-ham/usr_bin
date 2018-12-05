@@ -7,6 +7,7 @@ This part contains menu for spotnik HAM radio/internet relay.
 for user documentation please refer to the [spotnik documentation]
 
 ## Production
+
 ### Install
 ssh spotnik
 cd /usr
