@@ -6,7 +6,7 @@
 
 while : ; do
 
-choix=$(whiptail --title "Spotnik Menu 2.0"  --menu "                    >> Make your Choice: " 33 69 26 \
+choix=$(whiptail --title "Spotnik Menu 2.0"  --menu "                    >> Make your Choice: " 35 69 28 \
 1 " Restart Spotnik on Stand Alone '95'" \
 2 " Restart Spotnik on RRF '96'" \
 3 " Restart Spotnik on FON Room '97'" \
@@ -16,19 +16,21 @@ choix=$(whiptail --title "Spotnik Menu 2.0"  --menu "                    >> Make
 7 " Restart Spotnik on LOC Room '101'" \
 8 " Restart Spotnik on SAT Room '102'" \
 9 " Restart Spotnik on EchoLink '103'" \
-10 " See Spotnik working (Logs) 'ctrl c'to leave" \
-11 " Configure Wifi or network" \
-12 " Trim Sound Alsamixer" \
-13 " Edit Svxlink.cfg for all reflectors" \
-14 " Edit Svxlink.echo for EchoLink." \
-15 " Edit ModuleEchoLink.conf" \
-16 " Edit Airport for meteo" \
-17 " MC Midnight Commander" \
-18 " Configure mail account for Propagation Monitor" \
-19 " Configure SA818 Radio Spotnik Delta only " \
-20 " Edit HAMNET acount " \
-21 " Edit HAMNET login & password " \
-22 " Reboot '1000'"  3>&1 1>&2 2>&3)
+10 " Restart Spotnik on Regional '104'" \
+11 " See Spotnik working (Logs) 'ctrl c'to leave" \
+12 " Configure Wifi or network" \
+13 " Trim Sound Alsamixer" \
+14 " Edit Svxlink.cfg for all reflectors" \
+15 " Edit Svxlink.el for EchoLink." \
+16 " Edit ModuleEchoLink.conf" \
+17 " Edit Airport for meteo" \
+18 " MC Midnight Commander" \
+19 " Configure mail account for Propagation Monitor" \
+20 " Configure SA818 Radio Spotnik Delta only " \
+21 " Edit HAMNET acount " \
+22 " Edit HAMNET login & password " \
+23 " Configure Dwagent " \
+24 " Reboot '1000'"  3>&1 1>&2 2>&3)
 
 exitstatus=$?
 
@@ -74,42 +76,48 @@ case $choix in
 /etc/spotnik/restart.el ;;
 
 10)
-/etc/spotnik/view_svx ;;
+/etc/spotnik/restart.reg ;;
 
 11)
-nmtui ;;
+/etc/spotnik/view_svx ;;
 
 12)
-alsamixer && alsactl store ;;
+nmtui ;;
 
 13)
-mcedit /etc/spotnik/svxlink.cfg ;;
+alsamixer && alsactl store ;;
 
 14)
-mcedit /etc/spotnik/svxlink.echo ;;
+mcedit /etc/spotnik/svxlink.cfg ;;
 
 15)
-mcedit /etc/spotnik/svxlink.d/ModuleEchoLink.conf ;;
+mcedit /etc/spotnik/svxlink.el ;;
 
 16)
-mcedit /etc/spotnik/svxlink.d/ModuleMetarInfo.conf ;;
+mcedit /etc/spotnik/svxlink.d/ModuleEchoLink.conf ;;
 
 17)
-mc /etc/spotnik ;;
+mcedit /etc/spotnik/svxlink.d/ModuleMetarInfo.conf ;;
 
 18)
-fetchsetup ;;
+mc /etc/spotnik ;;
 
 19)
-818-prog ;;
+fetchsetup ;;
 
 20)
-mcedit /etc/ppp/peers/hamnet ;;
+818-prog ;;
 
 21)
-mcedit /etc/ppp/chap-secrets ;;
+mcedit /etc/ppp/peers/hamnet ;;
 
 22)
+mcedit /etc/ppp/chap-secrets ;;
+
+23)
+sh /usr/share/dwagent/native/configure ;;
+
+24)
 reboot
 
 esac

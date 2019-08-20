@@ -1,0 +1,56 @@
+#!/bin/bash
+#
+# 	Script de configuration pour Fetchmail 
+#
+#	V1.0  @TK4LS
+
+FETCHMAIL_FILE='/etc/spotnik/fetchmailrc'
+
+srv=$(whiptail --title "Configuration Moniteur de Propagation" --inputbox "\nSaisir le serveur de mail: \n\nEx: pop.gmail.com\n    imap.free.fr\n    pop.orange.fr\n    ...." 13 80 "" 3>&1 1>&2 2>&3)
+
+login=$(whiptail --title "Configuration Moniteur de Propagation" --inputbox "\nSaisir le nom utilisateur de votre compte mail." 13 80 "" 3>&1 1>&2 2>&3)
+
+pswd=$(whiptail --title "Configuration Moniteur de Propagation" --inputbox "\nSaisir le mot de passe de votre compte mail." 13 80 "" 3>&1 1>&2 2>&3)
+#pswd=$(whiptail --title "Configuration Moniteur de Propagation" --passwordbox "\nSaisir le mot de passe de votre compte mail." 13 80 "" 3>&1 1>&2 2>&3)
+
+proto=$(whiptail --title "Configuration Moniteur de Propagation" --radiolist \
+"\nSelectionner le protocol du serveur de mail." 15 60 4 \
+"AUTO" "Automatique" ON \
+"POP3" "(Port 110)" OFF \
+"POP3s" "(Port 995)" OFF \
+"IMAP" "(Port 143)" OFF \
+"IMAPs" "(Port 993)" OFF 3>&1 1>&2 2>&3)
+
+case $proto in
+
+AUTO)
+proto=AUTO
+isSSL='ssl'
+;;
+
+POP3)
+proto=POP3
+isSSL=''
+;;
+
+POP3s)
+proto=POP3
+isSSL='ssl'
+;;
+
+IMAPs)
+proto=IMAP
+isSSL='ssl'
+;;
+
+IMAP)
+proto=IMAP
+isSSL=''
+;;
+
+esac
+
+
+
+echo -e "poll $srv with proto $proto\nuser \"$login\" pass \"$pswd\" $isSSL\nmda \"/usr/bin/procmail -d %s\"" > $FETCHMAIL_FILE
+chmod 600 $FETCHMAIL_FILE
