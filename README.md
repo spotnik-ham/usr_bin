@@ -11,7 +11,7 @@ for user documentation please refer to the [spotnik documentation]
 ### Install
 ssh spotnik
 cd /usr
-git clone https://github.com/spotnik-ham/usr_bin.git bin
+git clone --single-branch --branch Version_4 https://github.com/spotnik-ham/usr_bin.git bin
 
 cd bin
 
