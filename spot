@@ -1,12 +1,12 @@
 #!/bin/bash
-# MENU DE SELECTION POUR Spotnik-2.0
+# MENU DE SELECTION POUR Spotnik-3.1
 #
-#  F5NLG  17/07/2019
+#  F5NLG  08/09/2020
 #
 
 while : ; do
 
-choix=$(whiptail --title "Spotnik Menu 2.0"  --menu "                    >> Make your Choice: " 35 69 28 \
+choix=$(whiptail --title "Spotnik Menu 3.1"  --menu "                    >> Make your Choice: " 28 60 21 \
 1 " Restart Spotnik on Stand Alone '95'" \
 2 " Restart Spotnik on RRF '96'" \
 3 " Restart Spotnik on FON Room '97'" \
@@ -14,7 +14,7 @@ choix=$(whiptail --title "Spotnik Menu 2.0"  --menu "                    >> Make
 5 " Restart Spotnik on INT Room '99'" \
 6 " Restart Spotnik on BAV Room '100'" \
 7 " Restart Spotnik on LOC Room '101'" \
-8 " Restart Spotnik on SAT Room '102'" \
+8 " Restart Spotnik on EXP Room '102'" \
 9 " Restart Spotnik on EchoLink '103'" \
 10 " Restart Spotnik on Regional '104'" \
 11 " See Spotnik working (Logs) 'ctrl c'to leave" \
@@ -27,10 +27,7 @@ choix=$(whiptail --title "Spotnik Menu 2.0"  --menu "                    >> Make
 18 " MC Midnight Commander" \
 19 " Configure mail account for Propagation Monitor" \
 20 " Configure SA818 Radio Spotnik Delta only " \
-21 " Edit HAMNET acount " \
-22 " Edit HAMNET login & password " \
-23 " Configure Dwagent " \
-24 " Reboot '1000'"  3>&1 1>&2 2>&3)
+21 " Configure Dwagent " 3>&1 1>&2 2>&3)
 
 exitstatus=$?
 
@@ -70,7 +67,7 @@ case $choix in
 /etc/spotnik/restart.loc ;;
 
 8)
-/etc/spotnik/restart.sat ;;
+/etc/spotnik/restart.exp ;;
 
 9)
 /etc/spotnik/restart.el ;;
@@ -109,16 +106,7 @@ fetchsetup ;;
 818-prog ;;
 
 21)
-mcedit /etc/ppp/peers/hamnet ;;
-
-22)
-mcedit /etc/ppp/chap-secrets ;;
-
-23)
 sh /usr/share/dwagent/native/configure ;;
-
-24)
-reboot
 
 esac
 
